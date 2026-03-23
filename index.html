@@ -1,0 +1,431 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>KGA Life | Claim Assessment Form</title>
+    <meta name="description" content="KGA Life claim assessment form submission." />
+    <style>
+      :root {
+        --bg: #0b1220;
+        --panel: rgba(255, 255, 255, 0.06);
+        --panel2: rgba(255, 255, 255, 0.08);
+        --border: rgba(255, 255, 255, 0.14);
+        --text: rgba(255, 255, 255, 0.92);
+        --muted: rgba(255, 255, 255, 0.7);
+        --subtle: rgba(255, 255, 255, 0.55);
+        --danger: #ff5a70;
+        --ok: #49d69e;
+        --brand: #7c5cff;
+        --brand2: #23c4ff;
+        --shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
+        --radius: 16px;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        font-family:
+          ui-sans-serif,
+          system-ui,
+          -apple-system,
+          Segoe UI,
+          Roboto,
+          Helvetica,
+          Arial,
+          "Apple Color Emoji",
+          "Segoe UI Emoji";
+        color: var(--text);
+        background:
+          radial-gradient(1200px 800px at 20% -10%, rgba(124, 92, 255, 0.35), transparent 60%),
+          radial-gradient(1000px 700px at 120% 10%, rgba(35, 196, 255, 0.28), transparent 55%),
+          radial-gradient(900px 650px at 40% 110%, rgba(73, 214, 158, 0.18), transparent 60%),
+          var(--bg);
+        min-height: 100vh;
+      }
+      a {
+        color: inherit;
+      }
+      .container {
+        max-width: 980px;
+        margin: 0 auto;
+        padding: 42px 18px 64px;
+      }
+      .header {
+        display: flex;
+        gap: 16px;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 18px;
+      }
+      .brand {
+        display: flex;
+        gap: 12px;
+        align-items: center;
+      }
+      .logo {
+        width: 44px;
+        height: 44px;
+        border-radius: 14px;
+        background: linear-gradient(135deg, rgba(124, 92, 255, 1), rgba(35, 196, 255, 1));
+        box-shadow: 0 10px 30px rgba(124, 92, 255, 0.25);
+      }
+      .brand h1 {
+        font-size: 18px;
+        margin: 0;
+        letter-spacing: 0.2px;
+      }
+      .brand p {
+        margin: 2px 0 0;
+        font-size: 13px;
+        color: var(--muted);
+      }
+      .card {
+        background: var(--panel);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+        overflow: hidden;
+      }
+      .cardTop {
+        padding: 22px 22px 10px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      }
+      .title {
+        margin: 0;
+        font-size: 22px;
+        letter-spacing: 0.2px;
+      }
+      .subtitle {
+        margin: 8px 0 0;
+        color: var(--muted);
+        font-size: 14px;
+        line-height: 1.4;
+      }
+      .requiredNote {
+        margin: 10px 0 0;
+        color: var(--subtle);
+        font-size: 12px;
+      }
+      form {
+        padding: 18px 22px 22px;
+      }
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(12, 1fr);
+        gap: 14px;
+      }
+      .field {
+        grid-column: span 12;
+        background: var(--panel2);
+        border: 1px solid rgba(255, 255, 255, 0.10);
+        border-radius: 14px;
+        padding: 12px;
+      }
+      @media (min-width: 760px) {
+        .span6 {
+          grid-column: span 6;
+        }
+        .span4 {
+          grid-column: span 4;
+        }
+        .span8 {
+          grid-column: span 8;
+        }
+      }
+      label {
+        display: block;
+        font-size: 12px;
+        color: var(--muted);
+        margin-bottom: 8px;
+      }
+      .req {
+        color: var(--danger);
+        margin-left: 6px;
+      }
+      input,
+      select,
+      textarea {
+        width: 100%;
+        border-radius: 12px;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        background: rgba(8, 12, 20, 0.6);
+        color: var(--text);
+        padding: 10px 12px;
+        outline: none;
+        font-size: 14px;
+      }
+      input::placeholder,
+      textarea::placeholder {
+        color: rgba(255, 255, 255, 0.38);
+      }
+      input:focus,
+      select:focus,
+      textarea:focus {
+        border-color: rgba(124, 92, 255, 0.65);
+        box-shadow: 0 0 0 4px rgba(124, 92, 255, 0.18);
+      }
+      .help {
+        margin-top: 8px;
+        font-size: 12px;
+        color: var(--subtle);
+        line-height: 1.35;
+      }
+      .actions {
+        margin-top: 16px;
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+      }
+      button {
+        border: 0;
+        border-radius: 14px;
+        padding: 11px 14px;
+        font-weight: 700;
+        background: linear-gradient(135deg, var(--brand), var(--brand2));
+        color: #07101b;
+        cursor: pointer;
+        font-size: 14px;
+      }
+      button[disabled] {
+        opacity: 0.6;
+        cursor: not-allowed;
+      }
+      .status {
+        font-size: 13px;
+        color: var(--muted);
+      }
+      .status.ok {
+        color: var(--ok);
+      }
+      .status.err {
+        color: var(--danger);
+      }
+      .footer {
+        margin-top: 14px;
+        font-size: 12px;
+        color: var(--subtle);
+        line-height: 1.45;
+      }
+      /* honeypot */
+      .hp {
+        position: absolute;
+        left: -9999px;
+        top: -9999px;
+        height: 0;
+        width: 0;
+        overflow: hidden;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <div class="brand">
+          <div class="logo" aria-hidden="true"></div>
+          <div>
+            <h1>KGA Life</h1>
+            <p>Claim Assessment Form</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="cardTop">
+          <h2 class="title">Claim Assessment Form</h2>
+          <p class="subtitle">
+            Please complete the form below and upload supporting documents. KGA Life will review the submission and contact you if anything is missing.
+          </p>
+          <p class="requiredNote"><span class="req">*</span> Indicates required fields</p>
+        </div>
+
+        <form id="claimForm" enctype="multipart/form-data" novalidate>
+          <div class="hp" aria-hidden="true">
+            <label for="companyWebsite">Company website</label>
+            <input id="companyWebsite" name="companyWebsite" autocomplete="off" tabindex="-1" />
+          </div>
+
+          <div class="grid">
+            <div class="field span6">
+              <label for="mainMemberId">MAIN MEMBER ID NUMBER</label>
+              <input id="mainMemberId" name="mainMemberId" inputmode="numeric" placeholder="e.g. 8001015009087" />
+            </div>
+
+            <div class="field span6">
+              <label for="policyNumber">POLICY NUMBER</label>
+              <input id="policyNumber" name="policyNumber" placeholder="e.g. KGA-123456" />
+            </div>
+
+            <div class="field span6">
+              <label for="deceasedId">DECEASED ID NUMBER</label>
+              <input id="deceasedId" name="deceasedId" inputmode="numeric" placeholder="e.g. 7801015009087" />
+            </div>
+
+            <div class="field span6">
+              <label for="causeOfDeath">CAUSE OF DEATH <span class="req">*</span></label>
+              <select id="causeOfDeath" name="causeOfDeath" required>
+                <option value="" selected disabled>Please select</option>
+                <option>Natural</option>
+                <option>Stillborn</option>
+                <option>Under Investigation</option>
+                <option>Un-natural</option>
+              </select>
+            </div>
+
+            <div class="field span6">
+              <label for="beneficiaryFirstName">Beneficiary FirstName <span class="req">*</span></label>
+              <input id="beneficiaryFirstName" name="beneficiaryFirstName" required placeholder="First name" />
+            </div>
+
+            <div class="field span6">
+              <label for="beneficiarySurname">Beneficiary Surname</label>
+              <input id="beneficiarySurname" name="beneficiarySurname" placeholder="Surname" />
+            </div>
+
+            <div class="field span6">
+              <label for="beneficiaryIdNumber">Beneficiary ID Number</label>
+              <input id="beneficiaryIdNumber" name="beneficiaryIdNumber" inputmode="numeric" placeholder="e.g. 9001015009087" />
+            </div>
+
+            <div class="field span6">
+              <label for="beneficiaryAccountNumber">Beneficiary Account Number</label>
+              <input id="beneficiaryAccountNumber" name="beneficiaryAccountNumber" inputmode="numeric" placeholder="Account number" />
+            </div>
+
+            <div class="field span8">
+              <label for="bankName">Please Select Bank Name</label>
+              <select id="bankName" name="bankName">
+                <option value="" selected>Please select</option>
+                <option>ABN AMRO BANK</option>
+                <option>ABSA</option>
+                <option>ALBARAKA BANK</option>
+                <option>BANK OF ATHENS</option>
+                <option>CAPITEC BANK</option>
+                <option>CITIBANK</option>
+                <option>FNB</option>
+                <option>INVESTEC</option>
+                <option>NBS</option>
+                <option>NEDBANK (CHQ ACCOUNT ONLY)</option>
+                <option>NEDBANK (SAVINGS ACCOUNT ONLY)</option>
+                <option>PEP BANK</option>
+                <option>STANDARD BANK</option>
+                <option>STATE BANK OF INDIA</option>
+                <option>TYMEBANK OF TYMEBANK LTD</option>
+                <option>BANK ZERO</option>
+                <option>BNP PARIBAS SA</option>
+                <option>DISCOVERY BANK LTD</option>
+                <option>FINBOND MUTUAL BANK</option>
+                <option>HSBC BANK</option>
+                <option>J.P.MORGAN CHASE BANK</option>
+                <option>SASFIN BANK LIMITED</option>
+                <option>SOCIETE GENERALE BANK</option>
+              </select>
+            </div>
+
+            <div class="field span4">
+              <label for="accountType">Please Select Account Type</label>
+              <select id="accountType" name="accountType">
+                <option value="" selected>Please select</option>
+                <option>Savings</option>
+                <option>Current</option>
+                <option>Cheque</option>
+              </select>
+            </div>
+
+            <div class="field span6">
+              <label for="contactEmail">Your Contact Email</label>
+              <input id="contactEmail" name="contactEmail" type="email" placeholder="you@example.com" />
+            </div>
+
+            <div class="field span6">
+              <label for="dateOfDeath">Date OF Death</label>
+              <input id="dateOfDeath" name="dateOfDeath" type="date" />
+              <div class="help">Day, month, year</div>
+            </div>
+
+            <div class="field span12">
+              <label for="documents">Documents (Death Certificate, Notice of Death, Beneficiary ID, Deceased ID, Beneficiary bank statement)</label>
+              <input id="documents" name="documents" type="file" />
+              <div class="help">Upload 1 supported file. Max 10 MB.</div>
+            </div>
+          </div>
+
+          <div class="actions">
+            <button id="submitBtn" type="submit">Submit</button>
+            <div id="status" class="status" role="status" aria-live="polite"></div>
+          </div>
+
+          <div class="footer">
+            Never submit passwords through this form.
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <script>
+      (function () {
+        const form = document.getElementById("claimForm");
+        const submitBtn = document.getElementById("submitBtn");
+        const statusEl = document.getElementById("status");
+        const documentsEl = document.getElementById("documents");
+
+        function setStatus(message, kind) {
+          statusEl.textContent = message || "";
+          statusEl.className = "status" + (kind ? " " + kind : "");
+        }
+
+        function validateClientSide() {
+          if (!form.reportValidity()) return false;
+
+          const file = documentsEl.files && documentsEl.files[0];
+          if (documentsEl.files && documentsEl.files.length > 1) {
+            setStatus("Please upload only 1 document file.", "err");
+            return false;
+          }
+          if (file && file.size > 10 * 1024 * 1024) {
+            setStatus("Document must be 10MB or less.", "err");
+            return false;
+          }
+          return true;
+        }
+
+        form.addEventListener("submit", async (e) => {
+          e.preventDefault();
+          setStatus("", "");
+
+          if (!validateClientSide()) return;
+
+          submitBtn.disabled = true;
+          setStatus("Submitting…", "");
+
+          try {
+            const data = new FormData(form);
+
+            const res = await fetch("/api/submit", {
+              method: "POST",
+              body: data,
+            });
+
+            const payload = await res.json().catch(() => ({}));
+            if (!res.ok) {
+              const msg = payload && payload.error ? payload.error : "Submission failed. Please try again.";
+              setStatus(msg, "err");
+              return;
+            }
+
+            form.reset();
+            setStatus("Submitted successfully. Thank you.", "ok");
+          } catch (err) {
+            setStatus("Network error. Please try again.", "err");
+          } finally {
+            submitBtn.disabled = false;
+          }
+        });
+      })();
+    </script>
+  </body>
+</html>
+
