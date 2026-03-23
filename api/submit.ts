@@ -77,5 +77,5 @@ export default async function handler(req: any, res: any): Promise<void> {
     return;
   }
 
-  sendJson(res, 200, { ok: true });
+  sendJson(res, 200, { ok: true, upstreamStatus: upstreamRes.status });
 }

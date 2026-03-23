@@ -136,7 +136,7 @@ export default function App() {
         body: formData,
       });
 
-      const payload = (await res.json().catch(() => ({}))) as { error?: string };
+      const payload = (await res.json().catch(() => ({}))) as { error?: string; upstreamStatus?: number };
       if (!res.ok) {
         setSubmitState("error");
         setSubmitMessage(payload.error || "Submission failed. Please try again.");
@@ -144,7 +144,9 @@ export default function App() {
       }
 
       setSubmitState("success");
-      setSubmitMessage("Submitted successfully. Thank you.");
+      setSubmitMessage(
+        payload.upstreamStatus ? `Submitted successfully (webhook ${payload.upstreamStatus}). Thank you.` : "Submitted successfully. Thank you.",
+      );
       reset(defaultValues);
     } catch {
       setSubmitState("error");
