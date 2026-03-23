@@ -1,18 +1,32 @@
-# KGA Life – Claim Assessment Form
+# KGA Life – Claim Assessment Form (React + Vite + Tailwind)
 
-This is a lightweight, Vercel-ready web form for **KGA Life** that forwards submissions (including an uploaded document) to an **n8n webhook**.
+Professional, Vercel-ready claim assessment form for **KGA Life**.
+
+- Frontend: React + Vite + Tailwind (`src/App.tsx`)
+- Backend: Vercel Serverless/Edge function that forwards submissions to **n8n** (`api/submit.ts`)
+
+## Local development
+
+```bash
+npm install
+npm run dev
+```
+
+The Vite dev server proxies `POST /api/submit` to your n8n webhook to avoid browser CORS.
+
+To use your own webhook in dev:
+
+```bash
+setx N8N_WEBHOOK_URL "https://YOUR-N8N/webhook/..."
+```
 
 ## Deploy to Vercel
 
-1. Create a new Vercel project and import this folder.
-2. (Recommended) Set an environment variable:
+1. Import this repo/folder into Vercel.
+2. (Recommended) Set env var:
    - `N8N_WEBHOOK_URL` = your n8n webhook URL
 3. Deploy.
 
-The website is served from `index.html` and submissions are handled by `api/submit.ts`.
+## Limits
 
-## Notes
-
-- The backend route forwards your form as `multipart/form-data` to the webhook.
-- Document uploads are limited to **1 file** and **10MB**.
-
+- Upload: **1 file**, max **10MB**

@@ -52,7 +52,7 @@ export default async function handler(req: Request): Promise<Response> {
 
   if (!upstreamRes.ok) {
     const text = await upstreamRes.text().catch(() => "");
-    const snippet = text.length > 400 ? text.slice(0, 400) + "…" : text;
+    const snippet = text.length > 400 ? text.slice(0, 400) + "..." : text;
     return jsonResponse(
       {
         error: "Upstream webhook rejected the submission.",
@@ -65,4 +65,3 @@ export default async function handler(req: Request): Promise<Response> {
 
   return jsonResponse({ ok: true }, { status: 200 });
 }
-
