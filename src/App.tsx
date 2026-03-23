@@ -9,6 +9,7 @@ import { Input } from "./components/ui/Input";
 import { Select } from "./components/ui/Select";
 import { Spinner } from "./components/ui/Spinner";
 import { FileUpload } from "./components/FileUpload";
+import { DatePickerInput } from "./components/DatePickerInput";
 
 const MAX_BYTES = 10 * 1024 * 1024;
 
@@ -97,11 +98,13 @@ export default function App() {
     handleSubmit,
     setValue,
     reset,
+    watch,
     formState: { errors },
   } = useForm<FormValues>({
     resolver: zodResolver(schema),
     defaultValues,
   });
+  const dateOfDeath = watch("dateOfDeath");
 
   async function onSubmit(values: FormValues) {
     setSubmitState("submitting");
@@ -261,8 +264,12 @@ export default function App() {
                   <Input type="email" placeholder="you@example.com" {...register("contactEmail")} />
                 </Field>
 
-                <Field label="Date OF Death" hint="Day, month, year">
-                  <Input type="date" {...register("dateOfDeath")} />
+                <Field label="Date OF Death" hint="Select from the calendar (no typing needed).">
+                  <DatePickerInput
+                    registration={register("dateOfDeath")}
+                    value={dateOfDeath || ""}
+                    onClear={() => setValue("dateOfDeath", "")}
+                  />
                 </Field>
               </div>
 
