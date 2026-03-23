@@ -48,7 +48,7 @@ export function FileUpload({
       <div
         className={cn(
           "group relative flex min-h-28 cursor-pointer flex-col items-center justify-center gap-2 rounded-2xl border border-dashed border-white/20 bg-slate-950/30 px-4 py-5 text-center transition",
-          isDragging ? "border-cyan-300/60 bg-white/10" : "hover:bg-white/5",
+          isDragging ? "border-brand2/60 bg-white/10" : "hover:bg-white/5",
           error ? "border-rose-400/50" : null,
         )}
         role="button"
@@ -106,4 +106,3 @@ export function FileUpload({
     </div>
   );
 }
-

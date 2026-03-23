@@ -5,7 +5,9 @@ export default {
   theme: {
     extend: {
       colors: {
-        bg: "#0b1220"
+        bg: "#070B14",
+        brand: "#2563EB",
+        brand2: "#14B8A6",
       },
       boxShadow: {
         soft: "0 20px 60px rgba(0,0,0,.45)",
@@ -14,4 +16,3 @@ export default {
   },
   plugins: [],
 } satisfies Config;
-

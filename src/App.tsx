@@ -153,7 +153,7 @@ export default function App() {
     <div className="mx-auto max-w-5xl px-4 py-10 md:py-14">
       <header className="mb-6 flex items-center justify-between gap-4">
         <div className="flex items-center gap-3">
-          <div className="h-11 w-11 rounded-2xl bg-gradient-to-br from-violet-500 to-cyan-400 shadow-soft" />
+          <div className="h-11 w-11 rounded-2xl bg-gradient-to-br from-brand to-brand2 shadow-soft" />
           <div>
             <div className="text-sm font-semibold tracking-wide text-white/90">KGA Life</div>
             <div className="text-xs text-white/60">Claim Assessment Form</div>
